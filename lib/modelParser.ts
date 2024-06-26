@@ -50,10 +50,6 @@ export abstract class ModelParser<T = JSONObject, R = T> {
     this._id = id;
   }
 
-  public setApiKey = (apiKey: string) => {
-    this.apiKey = apiKey;
-  };
-
   /**
    * Serialize a prompt and additional metadata/model settings into a Prompt object that can be saved in the AIConfig.
    * @param promptName The name to save the prompt as.
