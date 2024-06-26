@@ -24,6 +24,7 @@ import {
 import { InferenceOptions } from "../modelParser";
 import { JSONObject } from "../../common";
 import { CallbackEvent } from "../callback";
+import { getAPIKeyFromEnv } from "../utils";
 
 type TextGenerationArgs = TextGenerationInput & BaseArgs;
 
@@ -194,7 +195,8 @@ export class HuggingFaceTextGenerationParser extends ParameterizedModelParser<Te
     const textGenerationArgs = this.deserialize(prompt, aiConfig, params);
 
     if (!this.hfClient) {
-      this.hfClient = createHuggingFaceClient(this.apiKey);
+      const huggingFaceAPIToken = getAPIKeyFromEnv("HUGGING_FACE_API_TOKEN");
+      this.hfClient = createHuggingFaceClient(huggingFaceAPIToken);
     }
 
     // if no options are passed in, don't stream because streaming is dependent on a callback handler

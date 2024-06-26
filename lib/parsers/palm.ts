@@ -145,9 +145,10 @@
 //     } as CallbackEvent;
 //     await aiConfig.callbackManager.runCallbacks(startEvent);
 
+//     const apiKey = getAPIKeyFromEnv("PALM_KEY");
 //     if (!this.client) {
 //       this.client = new TextServiceClient({
-//         authClient: new GoogleAuth().fromAPIKey(this.apiKey),
+//         authClient: new GoogleAuth().fromAPIKey(apiKey),
 //       });
 //     }
 

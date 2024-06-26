@@ -12,7 +12,7 @@ import {
 import { AIConfigRuntime } from "../config";
 import { ParameterizedModelParser } from "../parameterizedModelParser";
 import OpenAI, { ClientOptions } from "openai";
-import { omit, union, isEqual } from "../utils";
+import { omit, union, isEqual, getAPIKeyFromEnv } from "../utils";
 import { InferenceOptions } from "../modelParser";
 import { CallbackEvent } from "../callback";
 
@@ -160,7 +160,7 @@ export class OpenAIModelParser extends ParameterizedModelParser<CompletionCreate
   ): Promise<Output[]> {
     if (!this.openai) {
       this.openai = new OpenAI({
-        apiKey: this.apiKey,
+        apiKey: getAPIKeyFromEnv("OPENAI_API_KEY"),
         ...(this.openaiOptions || {}),
       });
     }
@@ -551,7 +551,7 @@ export class OpenAIChatModelParser extends ParameterizedModelParser<ChatCompleti
 
     if (!this.openai) {
       this.openai = new OpenAI({
-        apiKey: this.apiKey,
+        apiKey: getAPIKeyFromEnv("OPENAI_API_KEY"),
         ...(this.openaiOptions || {}),
       });
     }
